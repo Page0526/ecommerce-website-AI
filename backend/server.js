@@ -7,7 +7,6 @@ import 'dotenv/config'
 import cartRouter from './routes/cartRoute.js'
 
 
-
 // app config
 const app = express()
 const port = 4000
@@ -34,5 +33,4 @@ app.get("/", (req, res) => {
 app.listen(port, () => {
     console.log(`Server started on http://localhost:${port}`)
 })
-
-// mongodb+srv://22022638:bakeryweb@cluster0.zcdqe8x.mongodb.net/?
+// // mongodb+srv://22022638:bakeryweb@cluster0.zcdqe8x.mongodb.net/?
