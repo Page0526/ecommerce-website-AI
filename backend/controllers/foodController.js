@@ -48,4 +48,14 @@ const removeFood = async(req, res) => {
     }
 }
 
-export {addFood, listFood, removeFood} 
+const getFoodById = async (req, res) => {
+    try {
+        const food = await foodModel.findById(req.params.id); // Tìm food theo id từ database
+        res.json({success:true, data:food})
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ message: 'Error'});
+    }
+};
+
+export {addFood, listFood, removeFood, getFoodById} 
