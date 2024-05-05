@@ -58,4 +58,22 @@ const getFoodById = async (req, res) => {
     }
 };
 
-export {addFood, listFood, removeFood, getFoodById} 
+const addComment = async (req, res) => {
+    try {
+        const food = await foodModel.findById(req.params.id);
+
+        food.ratings.push({
+            userId: req.body.userId,
+            comment: req.body.comment,
+            rating: req.body.rating,
+        });
+        
+        await food.save();
+        res.json({success:true, message:"Added comment"});
+    } catch (error) {
+        console.log(error);
+        res.json({success:false, message:"Error"})
+    }  
+}
+
+export {addFood, listFood, removeFood, getFoodById, addComment} 
