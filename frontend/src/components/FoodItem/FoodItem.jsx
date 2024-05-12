@@ -2,6 +2,8 @@ import React, { useContext } from 'react'
 import './FoodItem.css'
 import { assets } from '../../assets/assets'
 import { StoreContext } from '../../context/StoreContext.jsx';
+import { Link } from 'react-router-dom';
+
 
 const FoodItem = ({ id, name, price, description, image }) => {
 
@@ -22,7 +24,7 @@ const FoodItem = ({ id, name, price, description, image }) => {
             </div>
             <div className="food-item-info">
                 <div className="food-item-name-rating">
-                    <p>{name}</p>
+                    <Link to={`/food/${id}`}>{name}</Link>
                     <img src={assets.rating_starts} alt="" />
                 </div>
                 <p className="food-item-desc">{description}</p>
