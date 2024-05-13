@@ -1,5 +1,5 @@
 import express from 'express'
-import { addFood, listFood, removeFood, getFoodById, addComment } from '../controllers/foodController.js'
+import { addFood, listFood, removeFood, getFoodById, addComment, searchFood } from '../controllers/foodController.js'
 import authMiddleware from "../middleware/auth.js"
 import multer from 'multer'
 
@@ -17,11 +17,11 @@ const storage = multer.diskStorage({
 const upload = multer({storage: storage})
 
 // modify router
+foodRouter.get("/search", searchFood);
 foodRouter.post("/add",upload.single("image"),addFood)
 foodRouter.get('/list',listFood)
 foodRouter.post('/remove',removeFood);
 foodRouter.get('/:id', getFoodById);
 foodRouter.post("/:id", authMiddleware, addComment)
-
 
 export default foodRouter;
