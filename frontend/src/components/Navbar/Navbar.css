@@ -47,6 +47,27 @@
     cursor: pointer;
 }
 
+.suggestion-item {
+    width: 250px;
+    height: 40px;
+    display: flex;
+    align-items: center; 
+    background-color: #ebebeb;
+    border: 1px solid rgb(183, 183, 183);
+    cursor: pointer;
+}
+
+.suggestion-item img {
+    width: 30px;
+    margin-left: 4px;
+    margin-right: 4px; 
+    
+}
+
+.suggestion-item .name {
+    font-size: 15px;
+}
+
 .navbar-search-icon .dot{
     position: absolute;
     min-width: 10px;
