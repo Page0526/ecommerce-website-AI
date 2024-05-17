@@ -4,8 +4,43 @@ import pandas as pd # data processing, CSV file I/O (e.g. pd.read_csv)
 import requests
 import random
 import os
+
+def content_based(item, df):
+    new_data = df.drop_duplicates(subset = ['Items']).reset_index(drop=True)
+
+    #Define a TF-IDF Vectorizer Object. Remove all english stop words such as 'the', 'a'
+    tfidf = TfidfVectorizer(stop_words='english')
+
+    #Replace NaN with an empty string
+    new_data['Description'] = new_data['Description'].fillna('')
+
+    #Construct the required TF-IDF matrix by fitting and transforming the data
+    tfidf_matrix = tfidf.fit_transform(new_data['Description'])
+
+    # Compute the cosine similarity matrix
+    cosine_sim = linear_kernel(tfidf_matrix, tfidf_matrix)
+
+    #Construct a reverse map of indices and movie titles
+    indices = pd.Series(new_data.index, index=new_data['Items']).drop_duplicates()
+
+    # Get the index of the movie that matches the title
+    idx = indices[item]
+
+    # Get the pairwsie similarity scores of all movies with that movie
+    sim_scores = cosine_sim[idx] 
+
+    # Sort the movies based on the similarity scores
+    sim_scores = sorted(range(len(sim_scores)), key=lambda i: sim_scores[i], reverse=True)
+
+    # Get the scores of the 10 most similar movies
+    sim_scores = sim_scores[1:11]
+
+    items_indices = sim_scores[1:11]
     
-def recommend(item_name, random_user, df):
+    # Return the top 10 most similar movies
+    return list(set(new_data['Items'].iloc[items_indices]))
+
+def CollaborativeFiltering(item_name, random_user, df):
     # df = fetch_data_from_api(url)
     user_item_df = df.pivot_table(index=["User"], columns=["Items"], values="Rating")
     # item_name1 = user_item_df[item_name]
@@ -61,3 +96,20 @@ def recommend(item_name, random_user, df):
     recommend_list = list(set(recommend_list))[:10]
     recommend_list = sorted(recommend_list, key=lambda x: random.random())
     return recommend_list
+
+def recommend(item, user, df):
+  user_item_counts = df.groupby('User')['Items'].nunique()
+  
+  if (len(user_item_counts) < 10):
+    return content_based(item, df)  
+  else:
+    return CollaborativeFiltering(item, user, df)
+
+# test
+cd = os.getcwd()
+print(os.path.dirname(cd))
+data_path = os.path.join(os.path.dirname(cd), 'modelAI\\data')
+print(data_path)
+df = pd.read_csv(os.path.join(data_path, 'data.csv')) 
+test = recommend('Chocolate crinkles', 'Ted', df)
+print("test: ", test)
