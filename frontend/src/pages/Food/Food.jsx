@@ -3,6 +3,7 @@ import './Food.css'
 import { StoreContext } from '../../context/StoreContext';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
+import { assets } from '../../assets/assets';
 
 const Food = () => {
 
@@ -92,14 +93,21 @@ const Food = () => {
             <div class="descrip">
                 <p class="name">{data.name}</p>
                 <p class="price">{data.price}vnd</p>
-                <p>Description:</p>
+                <p className='description-title'>Description:</p>
                 <p class="description">{data.description}</p>
                 <p className="category">Catogory: {data.category}</p>
                 <div class="rate">
                     <p>{averageRating}</p>
                     <div className="star">{renderStarRating()}</div>
                 </div>
-
+                {!cartItems[data._id]
+                    ? <button className="add-button" onClick={() => addToCart(data._id)}>Add to cart</button>
+                    : <div className='food-item-counters'>
+                        <img onClick={() => removeFromCart(data._id)} src={assets.remove_icon_red} alt="" />
+                        <p>{cartItems[data._id]}</p>
+                        <img onClick={() => addToCart(data._id)} src={assets.add_icon_green} alt="" />
+                    </div>
+                }
             </div>
         </div>
         <br />

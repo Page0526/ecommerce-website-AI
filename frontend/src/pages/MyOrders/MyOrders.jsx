@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from 'react'
 import './MyOrders.css'
 import { StoreContext } from '../../context/StoreContext';
 import axios from 'axios';
-import { assets } from '../../assets/assets';
+import { assets } from '../../assets/assets.js';
 
 const MyOrders = () => {
 
@@ -27,7 +27,7 @@ const MyOrders = () => {
             {data.map((order, index) => {
                 return (
                     <div key={index} className="my-orders-order">
-                        <img src="assets.parcel_icon" alt="" />
+                        <img src={assets.parcel_icon} alt="" />
                         <p>{order.items.map((item, index) => {
                             if (index === order.items.length-1) {
                                 return item.name + " x " + item.Quantity

@@ -121,9 +121,9 @@ const Navbar = ({ setShowLogin }) => {
                         <ul className='nav-profile-dropdown'>
                             <li onClick={() => navigate('/myorders')}><img src={assets.bag_icon} alt="" /><p>Orders</p></li>
                             <hr />
-                            <li onClick={() => navigate('/profile')}>Profile</li>
+                            <li onClick={() => navigate('/profile')}><img src={assets.info_icon} alt="" /><p>Profile</p></li>
                             <hr />
-                            <li onClick={logout}><img src={assets.logout_icon} alt="" /><p>Logout</p></li>
+                            <li onClick={logout}><img  src={assets.logout_icon} alt="" /><p>Logout</p></li>
                         </ul>
                     </div>}
             </div>

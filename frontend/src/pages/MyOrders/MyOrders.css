@@ -1,5 +1,10 @@
-.my-order {
-    margin: 50px 0px;
+.my-orders {
+    margin: 40px 0px;
+    margin-bottom: ;
+}
+
+.title-order {
+    color: rgb(122, 31, 31)
 }
 
 .my-order .container {
@@ -12,12 +17,15 @@
 .my-orders-order {
     display: grid;
     grid-template-columns: 0.5fr 2fr 1fr 1fr 2fr 1fr;
+    background-color: rgb(255, 237, 237);
     align-items: center;
     gap: 30px;
     font-size: 14px;
     padding: 10px 20px;
-    color: #454545;
-    border: 1px solid tomato;
+    color: #3f3f3f;
+    font-weight: 500;
+    margin-top: 5px;
+    border-radius: 2px;
 }
 
 .my-orders-order img {
@@ -25,8 +33,9 @@
 }
 
 .my-orders-order p span {
-    color: tomato;
+    color: rgb(228, 49, 18);
 }
+
 
 .my-orders-order p b {
     font-weight: 500;
@@ -37,9 +46,9 @@
     border: none;
     padding: 12px 0px;
     border-radius: 4px;
-    background-color: #ffe1e1;
+    background-color: rgb(241, 164, 164);
     cursor: pointer;
-    color: #454545;
+    color: #fff7f7;
 }
 
 @media (max-width: 900px) {
