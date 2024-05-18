@@ -1,6 +1,7 @@
 # from pymongo import MongoClient
 import numpy as np # linear algebra
 import pandas as pd # data processing, CSV file I/O (e.g. pd.read_csv)
+import sklearn
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import linear_kernel 
 import random
@@ -47,7 +48,6 @@ def content_based(item, df):
 
 def CollaborativeFiltering(item_name, random_user, df):
     # df = fetch_data_from_api(url)
-    random_user = df['User'].sample().values[0]
     user_item_df = df.pivot_table(index=["User"], columns=["Items"], values="Rating")
     # item_name1 = user_item_df[item_name]
     random_user_df = user_item_df[user_item_df.index == random_user]
@@ -103,7 +103,8 @@ def CollaborativeFiltering(item_name, random_user, df):
     recommend_list = sorted(recommend_list, key=lambda x: random.random())
     return recommend_list
 
-def recommend(item, user, df):
+def recommend(item, df):
+    user = df['User'].sample().values[0]
     user_item_counts = df.groupby('User')['Items'].nunique()
     
     if (len(user_item_counts) < 10):
@@ -117,5 +118,5 @@ print(os.path.dirname(cd))
 data_path = os.path.join(os.path.dirname(cd), 'modelAI\\data')
 print(data_path)
 df = pd.read_csv(os.path.join(data_path, 'data.csv')) 
-test = recommend('Chocolate crinkles', 'Ted', df)
+test = recommend('Chocolate crinkles', df)
 print("test: ", test)
