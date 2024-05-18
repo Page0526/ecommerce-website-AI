@@ -1,6 +1,8 @@
 # from pymongo import MongoClient
 import numpy as np # linear algebra
 import pandas as pd # data processing, CSV file I/O (e.g. pd.read_csv)
+from sklearn.feature_extraction.text import TfidfVectorizer
+from sklearn.metrics.pairwise import linear_kernel 
 import random
 import os
 
