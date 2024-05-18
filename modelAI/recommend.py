@@ -103,8 +103,7 @@ def CollaborativeFiltering(item_name, random_user, df):
     recommend_list = sorted(recommend_list, key=lambda x: random.random())
     return recommend_list
 
-def recommend(item, df):
-    user = df['User'].sample().values[0]
+def recommend(item, user, df):
     user_item_counts = df.groupby('User')['Items'].nunique()
     
     if (len(user_item_counts) < 10):
