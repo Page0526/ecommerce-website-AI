@@ -3,6 +3,7 @@ import './Food.css'
 import { StoreContext } from '../../context/StoreContext';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
+import { assets } from '../../assets/assets';
 
 // arrow function 
 const Food = () => {
@@ -87,7 +88,7 @@ const Food = () => {
         return stars;
     }
 
-    // call api from model
+        // call api from model
     // cannot use await function outside async funtion
     // fetch function initiate a network request and return a promise
     // useEffect(() => {
@@ -109,55 +110,64 @@ const Food = () => {
       
     // objects represent eventual completion (failure) of asynchronous execution and it returning value
     // but in this case it's not a promise but a jsx (syntax used by React to define UI components)
-    return (
-        <div className='food'>
-            <div className="container">
-                <img className="food-item-img" src={url + "/images/"+ data.image} alt="" />
-                <div className="descrip">
-                    <p className="name">{data.name}</p>
-                    <p className="price">{data.price}vnd</p>
-                    <p>Description:</p>
-                    <p className="description">{data.description}</p>
-                    <p className="category">Catogory: {data.category}</p>
-                    <div className="rate">
-                        <p>{averageRating}</p>
-                        <div className="star">{renderStarRating()}</div>
-                    </div>
+    
+  return (
+    <div className='food'>
+        <div className="container">
+            <img className="food-item-img" src={url + "/images/"+ data.image} alt="" />
+            <div class="descrip">
+                <p class="name">{data.name}</p>
+                <p class="price">{data.price}vnd</p>
+                <p className='description-title'>Description:</p>
+                <p class="description">{data.description}</p>
+                <p className="category">Catogory: {data.category}</p>
+                <div class="rate">
+                    <p>{averageRating}</p>
+                    <div className="star">{renderStarRating()}</div>
+                </div>
                 <div className="lsFoodRecommend">
                     lsFoodRecommend({data.name})
                 </div>
-                </div>
-            </div>
-            <br />
-            <br />
-            <div>
-                <h4>Ratings:</h4>
-                {data.ratings && Object.keys(data.ratings).length > 0 ? (
-                    <ul>
-                        {data.ratings.map((rating, index) => (
-                            <li key={index}>
-                                <p>User ID: {rating.userId}</p>
-                                <p>Comment: {rating.comment}</p>
-                                <p>Rating: {rating.rating}</p>
-                            </li>
-                        ))}
-                    </ul>
-                ) : (
-                    <p>No ratings available</p>
-                )}
-            </div>
-            <form onSubmit={comment} className='place-order'>
-                <div className="place-order-left">
-                    <p className="title">Comment</p>
-                    <div className="multi-fields">
-                    <input required name='comment' onChange={ onChangeHandler } value={ rating.comment } type="text" placeholder='comment' />
-                    <input required name='rate' onChange={ onChangeHandler } value={ rating.rate } type="number" placeholder='rate' />
+                {!cartItems[data._id]
+                    ? <button className="add-button" onClick={() => addToCart(data._id)}>Add to cart</button>
+                    : <div className='food-item-counters'>
+                        <img onClick={() => removeFromCart(data._id)} src={assets.remove_icon_red} alt="" />
+                        <p>{cartItems[data._id]}</p>
+                        <img onClick={() => addToCart(data._id)} src={assets.add_icon_green} alt="" />
                     </div>
-                    <button type='submit'>Comment</button>
-                </div>
-            </form>
+                }
+            </div>
         </div>
-    )
+        <br />
+        <br />
+        <div>
+            <h4>Ratings:</h4>
+            {data.ratings && Object.keys(data.ratings).length > 0 ? (
+                <ul>
+                    {data.ratings.map((rating, index) => (
+                        <li key={index}>
+                            <p>User ID: {rating.userId}</p>
+                            <p>Comment: {rating.comment}</p>
+                            <p>Rating: {rating.rating}</p>
+                        </li>
+                    ))}
+                </ul>
+            ) : (
+                <p>No ratings available</p>
+            )}
+        </div>
+        <form onSubmit={comment} className='place-order'>
+            <div className="place-order-left">
+                <p className="title">Comment</p>
+                <div className="multi-fields">
+                <input required name='comment' onChange={ onChangeHandler } value={ rating.comment } type="text" placeholder='comment' />
+                <input required name='rate' onChange={ onChangeHandler } value={ rating.rate } type="number" placeholder='rate' />
+                </div>
+                <button type='submit'>Comment</button>
+            </div>
+        </form>
+    </div>
+  )
 }
 
 export default Food

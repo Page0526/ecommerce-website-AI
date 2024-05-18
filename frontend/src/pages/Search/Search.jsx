@@ -36,6 +36,7 @@ const Search = () => {
 
     return (
         <div className='search-container'>
+            <h1 className="title-search">Search results </h1>
             <div className="search-results">
                 {noFoodFound ? (
                     <div>No food</div>

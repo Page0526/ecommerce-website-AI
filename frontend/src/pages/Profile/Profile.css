@@ -1,21 +1,21 @@
 .profile {
     width: 100%;
     height: 550px;
+    color: rgb(122, 31, 31)
 }
 
 .container2 {
     position: absolute;
-    background-color: rgb(237, 237, 237);
+    background-color: rgb(255, 237, 237);
     width: 80%;
     height: 550px;
     top: 55%;
     left: 50%;
     transform: translate(-50%, -50%);
     border-radius: 10px;
-    border: 0.5px solid rgb(191, 189, 189);
 }
 
-h2 {
+.title-profile {
     height: 80px;
     display: flex;
     align-items: center;
@@ -23,7 +23,7 @@ h2 {
     padding-left: 30px;
     font-weight: 500;
     font-size: 28px;
-    border-bottom: 0.5px solid rgb(191, 189, 189);
+    border-bottom: 0.5px solid rgb(214, 214, 214);
 }
 
 .line {
@@ -72,7 +72,7 @@ h2 {
 }
 
 .change:hover {
-    color: rgb(243, 63, 63);
+    color: tomato;
     cursor: pointer;
 }
 
@@ -85,7 +85,7 @@ h2 {
     align-items: center;
     border: none;
     color: white;
-    background: tomato;
+    background: rgb(122, 31, 31);
     margin-top: 50px;
     font-size: 18px;
 }
@@ -96,26 +96,28 @@ h2 {
 
 .sidebar {
     width: 15%;
-    height: 450px;
-    border-right: 0.5px solid rgb(191, 189, 189);
+    height: 470px;
+    border-right: 0.5px solid rgb(209, 206, 206);
     display:flex;
     flex-direction: column;
-
 }
 
 #button {
     width: 100%;
+    background-color: rgb(253, 240, 240);
+    color: rgb(122, 31, 31);
     height: 60px;
     border: none;
-    border-bottom: 0.5px solid rgb(191, 189, 189);
+    border-bottom: 0.5px solid rgb(209, 206, 206);
+    font-weight: 500;
 }
 
 #button:hover {
-    color: rgb(243, 63, 63);
+    color: tomato;
     cursor: pointer;
     background-color: rgb(249, 249, 249);
     font-size: 14px;
-    font-weight: 500;
+    font-weight: 600;
 }
 
 .box {
@@ -130,7 +132,7 @@ h2 {
 }
 
 #button.active {
-    background-color: white;
+    background-color: rgb(247, 198, 198);
 }
 
 .information {
@@ -155,7 +157,7 @@ h2 {
     padding-left: 14px;
     font-weight: 400;
     font-size: 17px;
-    color: rgb(13, 151, 56);
+    color: rgb(0, 0, 0);
     border-radius: 4px;
     border: 0.5px solid rgb(209, 209, 209);
 }
@@ -165,6 +167,39 @@ h2 {
     margin-top: 15px;
     font-weight: bolder;
     font-size: 18px;
+}
+
+@media (max-width: 1050px) {
+    .box {
+        font-size: 12px;
+        left: 55%
+    }
+    
+    .title-profile {
+        font-size: 25px;
+    }
+}
+
+@media (max-width: 900px) {
+    .box {
+        font-size: 10px;
+        left: 55%
+    }
+
+    .container2 {
+        width: 70%;
+        height: 550px;
+    }
+    
+    .title-profile {
+        font-size: 20px;
+    }
+}
+
+@media (max-width: 850px) {
+    .box {
+        display: none;
+    }
 }
 
 

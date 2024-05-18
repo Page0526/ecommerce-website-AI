@@ -80,7 +80,7 @@ const Profile = () => {
     return (
         <div className="profile">
             <div className="container2">
-                <h2>Manage your profile information</h2>
+                <h2 className='title-profile'>Manage your profile information</h2>
                 <div className="sidebar">
                     <button id="button" className={showUpdateProfile ? "active" : ""} onClick={handleShowUpdateProfile}>Update</button>
                     <button id="button" className={!showUpdateProfile ? "active" : ""} onClick={handleShowMyProfile}>My Profile</button>
