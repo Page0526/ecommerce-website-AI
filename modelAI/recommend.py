@@ -46,6 +46,14 @@ def content_based(item, df):
     # Return the top 10 most similar movies
     return list(set(new_data['Items'].iloc[items_indices]))
 
+def item_based(item_name, df):
+    user_item_df = df.pivot_table(index=["User"], columns=["Items"], values="Rating")
+    item_name_col = user_item_df[item_name]
+    moveis_from_item_based = user_item_df.corrwith(item_name_col).sort_values(ascending=False)
+    mask = moveis_from_item_based.index != item_name
+    moveis_from_item_based = moveis_from_item_based[mask]
+    return moveis_from_item_based[0:10].index.to_list()
+
 def CollaborativeFiltering(item_name, random_user, df):
     # df = fetch_data_from_api(url)
     user_item_df = df.pivot_table(index=["User"], columns=["Items"], values="Rating")
@@ -103,13 +111,17 @@ def CollaborativeFiltering(item_name, random_user, df):
     recommend_list = sorted(recommend_list, key=lambda x: random.random())
     return recommend_list
 
-def recommend(item, user, df):
-    user_item_counts = df.groupby('User')['Items'].nunique()
-    
-    if (len(user_item_counts) < 10):
-      return content_based(item, df)  
+def recommend(item, user, df, isLogin = False):
+    counts = df['User'].value_counts()
+    if (not isLogin or counts[user] < 10):
+        print("Content based + Item based")
+        recommend_list = content_based(item, df) + item_based(item, df)
+        recommend_list = list(set(recommend_list))[:10]
+        recommend_list = sorted(recommend_list, key=lambda x: random.random())
+        return recommend_list
     else:
-      return CollaborativeFiltering(item, user, df)
+        print("Collaborative Filtering")
+        return CollaborativeFiltering(item, user, df)
 
 # test
 cd = os.getcwd()
@@ -117,5 +129,5 @@ print(os.path.dirname(cd))
 data_path = os.path.join(os.path.dirname(cd), 'modelAI\\data')
 print(data_path)
 df = pd.read_csv(os.path.join(data_path, 'data.csv')) 
-test = recommend('Chocolate crinkles', df)
+test = recommend('Chocolate crinkles', 'Adam', df, True)
 print("test: ", test)
