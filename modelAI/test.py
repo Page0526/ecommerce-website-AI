@@ -1,10 +1,9 @@
 import requests
 
-def call_api(item_name, random_user):
+def call_api(item_name):
     url = "http://localhost:4040/recommend/"
     params = {
         "item_name": item_name,
-        "random_user": random_user
     }
     response = requests.get(url, params=params)
     if response.status_code == 404:
@@ -16,5 +15,5 @@ def call_api(item_name, random_user):
     data = response.json()
     return data["recommendations"]
 
-test = call_api('Chocolate crinkles', 'Ted')
+test = call_api('Chocolate crinkles')
 print(test)

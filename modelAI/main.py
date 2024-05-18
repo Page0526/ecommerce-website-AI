@@ -1,8 +1,8 @@
 from fastapi import FastAPI, HTTPException
 import pandas as pd
-import requests
-import uvicorn
-import joblib
+# import requests
+# import uvicorn
+# import joblib
 import os
 from recommend import recommend
 
@@ -20,13 +20,13 @@ def pong():
 
 # get recommendation from item and user
 @app.get("/recommend/")
-async def get_recommendations(item_name: str, random_user: str):
+async def get_recommendations(item_name: str):
     cd = os.getcwd()
     data_path = os.path.join(os.path.dirname(cd), 'modelAI\\data')
     df = pd.read_csv(os.path.join(data_path,'data.csv'))
-    if item_name not in df['Items'].values:  # Replace 'item_column' with the actual column name in your df
+    if item_name not in df['Items'].values: 
         raise HTTPException(status_code=404, detail="Item not found")
-    # Call your recommend function with the provided parameters
-    recommendations = recommend(item_name, random_user, df)
+    
+    recommendations = recommend(item_name, df)
     return {"recommendations": recommendations}
 

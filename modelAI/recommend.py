@@ -1,12 +1,17 @@
-from pymongo import MongoClient
+# from pymongo import MongoClient
 import numpy as np # linear algebra
 import pandas as pd # data processing, CSV file I/O (e.g. pd.read_csv)
-import requests
 import random
-import os
     
-def recommend(item_name, random_user, df):
+
+'''
+Tạo gợi ý dựa trên hành vi Người dùng:** Sử dụng dữ liệu về hành vi duyệt web và mua hàng của người dùng để gợi ý sản phẩm phù hợp.
+Cập nhật mô hình gợi ý:** Mô hình gợi ý cần được cập nhật định kỳ dựa trên dữ liệu mới nhất.
+'''
+
+def recommend(item_name,df): 
     # df = fetch_data_from_api(url)
+    random_user = df['User'].sample().values[0]
     user_item_df = df.pivot_table(index=["User"], columns=["Items"], values="Rating")
     # item_name1 = user_item_df[item_name]
     random_user_df = user_item_df[user_item_df.index == random_user]
