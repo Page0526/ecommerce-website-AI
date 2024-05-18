@@ -16180,7 +16180,7 @@ TransactionNo,Items,DateTime,Daypart,DayType,User,Rating,Description,Category
 7707,Chicken Stew,2017-06-03 14:04:40,Afternoon,Weekday,Mabel,2,"Hearty and comforting stews made with tender chicken, vegetables, and aromatic herbs, perfect for warming up on cold days.",Pure Veg
 7708,Coffee,2017-06-03 14:22:12,Afternoon,Weekday,Mindy,0,"Cakes infused with the rich flavor of coffee, providing a delightful combination of sweetness and caffeine.",Beverages
 7708,Juice,2017-06-03 14:22:12,Afternoon,Weekday,Amanda,0,Refreshing fruit or vegetable juices served alongside cakes to provide a burst of flavor and hydration.,Beverages
-7708,Drinking chocolate spoons ,2017-06-03 14:22:12,Afternoon,Weekday,Sophia,3,,Pure Veg
+7708,Drinking chocolate spoons,2017-06-03 14:22:12,Afternoon,Weekday,Sophia,3,,Pure Veg
 7709,Bread,2017-06-03 14:26:46,Afternoon,Weekday,Neil,0,"A staple food made from flour, water, and yeast, often baked until golden brown with a soft interior.",Pure Veg
 7709,Sandwich,2017-06-03 14:26:46,Afternoon,Weekday,Angela,2,"Layers of bread filled with meats, cheeses, vegetables, and condiments, offering a portable and satisfying meal option.",Sandwiches
 7709,Coffee,2017-06-03 14:26:46,Afternoon,Weekday,Drew,2,"Cakes infused with the rich flavor of coffee, providing a delightful combination of sweetness and caffeine.",Beverages
@@ -16752,7 +16752,7 @@ TransactionNo,Items,DateTime,Daypart,DayType,User,Rating,Description,Category
 7959,Cake,2017-11-03 12:51:08,Afternoon,Weekend,Glenda,5,"Sweet baked goods made from a mixture of flour, sugar, eggs, and butter or oil, often flavored with extracts, fruits, or spices.",Pure Veg
 7960,Pastry,2017-11-03 12:55:44,Afternoon,Weekend,Donna,5,"Delicate, flaky pastries filled with sweet or savory ingredients, ranging from fruit to cheese and meats.",Pure Veg
 7961,Brownie,2017-11-03 13:04:45,Afternoon,Weekend,Sally,5,"Rich, fudgy chocolate cakes with a dense texture, often studded with nuts or chocolate chips.",Pure Veg
-7961,Drinking chocolate spoons ,2017-11-03 13:04:45,Afternoon,Weekend,Billy,2,,Pure Veg
+7961,Drinking chocolate spoons,2017-11-03 13:04:45,Afternoon,Weekend,Billy,2,,Pure Veg
 7961,Bread,2017-11-03 13:04:45,Afternoon,Weekend,Scott,5,"A staple food made from flour, water, and yeast, often baked until golden brown with a soft interior.",Pure Veg
 7961,Coffee,2017-11-03 13:04:45,Afternoon,Weekend,Bryan,3,"Cakes infused with the rich flavor of coffee, providing a delightful combination of sweetness and caffeine.",Beverages
 7961,Sandwich,2017-11-03 13:04:45,Afternoon,Weekend,Tasha,5,"Layers of bread filled with meats, cheeses, vegetables, and condiments, offering a portable and satisfying meal option.",Sandwiches
@@ -16945,7 +16945,7 @@ TransactionNo,Items,DateTime,Daypart,DayType,User,Rating,Description,Category
 8040,Coffee,2017-12-03 14:30:12,Afternoon,Weekend,Cheryl,5,"Cakes infused with the rich flavor of coffee, providing a delightful combination of sweetness and caffeine.",Beverages
 8041,Bread,2017-12-03 14:32:26,Afternoon,Weekend,Theresa,1,"A staple food made from flour, water, and yeast, often baked until golden brown with a soft interior.",Pure Veg
 8041,Mineral water,2017-12-03 14:32:26,Afternoon,Weekend,Zachary,2,A refreshing beverage often served alongside cakes to cleanse the palate and provide hydration.,Beverages
-8041,Drinking chocolate spoons ,2017-12-03 14:32:26,Afternoon,Weekend,Olivia,1,,Pure Veg
+8041,Drinking chocolate spoons,2017-12-03 14:32:26,Afternoon,Weekend,Olivia,1,,Pure Veg
 8041,Coffee,2017-12-03 14:32:26,Afternoon,Weekend,Florence,1,"Cakes infused with the rich flavor of coffee, providing a delightful combination of sweetness and caffeine.",Beverages
 8042,Hot chocolate,2017-12-03 14:33:44,Afternoon,Weekend,Charlotte,4,"Though not a cake in the traditional sense, hot chocolate complements cakes well, offering a warm and indulgent beverage often topped with whipped cream or marshmallows.",Beverages
 8043,Tea,2017-12-03 14:43:23,Afternoon,Weekend,Isaac,2,"Cakes perfect for pairing with a cup of tea, offering a balance of sweetness and lightness.",Beverages
@@ -18236,7 +18236,7 @@ TransactionNo,Items,DateTime,Daypart,DayType,User,Rating,Description,Category
 8658,Bread,2017-03-23 15:48:14,Afternoon,Weekday,Rose,4,"A staple food made from flour, water, and yeast, often baked until golden brown with a soft interior.",Pure Veg
 8659,Coffee,2017-03-23 15:56:13,Afternoon,Weekday,Melissa,4,"Cakes infused with the rich flavor of coffee, providing a delightful combination of sweetness and caffeine.",Beverages
 8660,Hot chocolate,2017-03-23 16:07:04,Afternoon,Weekday,Kristina,3,"Though not a cake in the traditional sense, hot chocolate complements cakes well, offering a warm and indulgent beverage often topped with whipped cream or marshmallows.",Beverages
-8660,Drinking chocolate spoons ,2017-03-23 16:07:04,Afternoon,Weekday,Nicole,4,,Pure Veg
+8660,Drinking chocolate spoons,2017-03-23 16:07:04,Afternoon,Weekday,Nicole,4,,Pure Veg
 8661,Tiffin,2017-03-23 16:34:12,Afternoon,Weekday,Justin,3,"A British confection made from crushed biscuits, dried fruits, nuts, and chocolate, perfect for a sweet and indulgent treat.",Pure Veg
 8661,Smoothies,2017-03-23 16:34:12,Afternoon,Weekday,Bill,2,"Refreshing blended beverages made from fruits, vegetables, and yogurt or milk, perfect for pairing with cakes for a light meal or snack.",Pure Veg
 8661,Coffee,2017-03-23 16:34:12,Afternoon,Weekday,Sara,4,"Cakes infused with the rich flavor of coffee, providing a delightful combination of sweetness and caffeine.",Beverages
@@ -18412,7 +18412,7 @@ TransactionNo,Items,DateTime,Daypart,DayType,User,Rating,Description,Category
 8739,Bread,2017-03-25 10:09:54,Morning,Weekend,Curtis,1,"A staple food made from flour, water, and yeast, often baked until golden brown with a soft interior.",Pure Veg
 8739,Hot chocolate,2017-03-25 10:09:54,Morning,Weekend,Jesse,4,"Though not a cake in the traditional sense, hot chocolate complements cakes well, offering a warm and indulgent beverage often topped with whipped cream or marshmallows.",Beverages
 8739,Hot chocolate,2017-03-25 10:09:54,Morning,Weekend,Marian,2,"Though not a cake in the traditional sense, hot chocolate complements cakes well, offering a warm and indulgent beverage often topped with whipped cream or marshmallows.",Beverages
-8739,Drinking chocolate spoons ,2017-03-25 10:09:54,Morning,Weekend,Jeremy,2,,Pure Veg
+8739,Drinking chocolate spoons,2017-03-25 10:09:54,Morning,Weekend,Jeremy,2,,Pure Veg
 8739,Muffin,2017-03-25 10:09:54,Morning,Weekend,Kay,2,"Individual-sized quick breads, often sweetened and flavored with fruits, nuts, or chocolate chips.",Pure Veg
 8739,Pastry,2017-03-25 10:09:54,Morning,Weekend,Jim,1,"Delicate, flaky pastries filled with sweet or savory ingredients, ranging from fruit to cheese and meats.",Pure Veg
 8740,Scandinavian,2017-03-25 10:10:44,Morning,Weekend,Josephine,0,"Reflecting the flavors of Northern Europe, Scandinavian cakes often feature berries, nuts, and wholesome grains.",Pure Veg
@@ -19059,7 +19059,7 @@ TransactionNo,Items,DateTime,Daypart,DayType,User,Rating,Description,Category
 9024,Bread,2017-03-29 15:37:31,Afternoon,Weekday,Tatiana,1,"A staple food made from flour, water, and yeast, often baked until golden brown with a soft interior.",Pure Veg
 9024,Coffee,2017-03-29 15:37:31,Afternoon,Weekday,Larry,1,"Cakes infused with the rich flavor of coffee, providing a delightful combination of sweetness and caffeine.",Beverages
 9024,Bread,2017-03-29 15:37:31,Afternoon,Weekday,Frederick,2,"A staple food made from flour, water, and yeast, often baked until golden brown with a soft interior.",Pure Veg
-9024,Drinking chocolate spoons ,2017-03-29 15:37:31,Afternoon,Weekday,Casey,5,,Pure Veg
+9024,Drinking chocolate spoons,2017-03-29 15:37:31,Afternoon,Weekday,Casey,5,,Pure Veg
 9025,Coffee,2017-03-29 16:01:01,Afternoon,Weekday,Mathew,1,"Cakes infused with the rich flavor of coffee, providing a delightful combination of sweetness and caffeine.",Beverages
 9025,Tea,2017-03-29 16:01:01,Afternoon,Weekday,Heidi,3,"Cakes perfect for pairing with a cup of tea, offering a balance of sweetness and lightness.",Beverages
 9025,Tiffin,2017-03-29 16:01:01,Afternoon,Weekday,Zachary,2,"A British confection made from crushed biscuits, dried fruits, nuts, and chocolate, perfect for a sweet and indulgent treat.",Pure Veg
@@ -19816,7 +19816,7 @@ TransactionNo,Items,DateTime,Daypart,DayType,User,Rating,Description,Category
 9371,Mineral water,2017-04-04 12:50:44,Afternoon,Weekday,Courtney,1,A refreshing beverage often served alongside cakes to cleanse the palate and provide hydration.,Beverages
 9371,Salad,2017-04-04 12:50:44,Afternoon,Weekday,Aaron,0,"Fresh and crisp salads made with a variety of greens, vegetables, fruits, and dressings, offering a light and healthy accompaniment to cakes.",Salads
 9371,Sandwich,2017-04-04 12:50:44,Afternoon,Weekday,Jose,4,"Layers of bread filled with meats, cheeses, vegetables, and condiments, offering a portable and satisfying meal option.",Sandwiches
-9371,Drinking chocolate spoons ,2017-04-04 12:50:44,Afternoon,Weekday,Sylvia,4,,Pure Veg
+9371,Drinking chocolate spoons,2017-04-04 12:50:44,Afternoon,Weekday,Sylvia,4,,Pure Veg
 9372,Chicken Stew,2017-04-04 12:53:58,Afternoon,Weekday,Erica,5,"Hearty and comforting stews made with tender chicken, vegetables, and aromatic herbs, perfect for warming up on cold days.",Pure Veg
 9372,Mineral water,2017-04-04 12:53:58,Afternoon,Weekday,Nelson,4,A refreshing beverage often served alongside cakes to cleanse the palate and provide hydration.,Beverages
 9372,Tea,2017-04-04 12:53:58,Afternoon,Weekday,Gerald,1,"Cakes perfect for pairing with a cup of tea, offering a balance of sweetness and lightness.",Beverages
@@ -19944,7 +19944,7 @@ TransactionNo,Items,DateTime,Daypart,DayType,User,Rating,Description,Category
 9420,Extra Salami or Feta,2017-05-04 13:49:46,Afternoon,Weekday,Marian,5,"Additional toppings for sandwiches or salads, offering a burst of flavor and protein.",Pure Veg
 9421,Cake,2017-05-04 14:00:23,Afternoon,Weekday,Florence,1,"Sweet baked goods made from a mixture of flour, sugar, eggs, and butter or oil, often flavored with extracts, fruits, or spices.",Pure Veg
 9422,Bread,2017-05-04 14:15:03,Afternoon,Weekday,Christine,1,"A staple food made from flour, water, and yeast, often baked until golden brown with a soft interior.",Pure Veg
-9422,Drinking chocolate spoons ,2017-05-04 14:15:03,Afternoon,Weekday,Maria,4,,Pure Veg
+9422,Drinking chocolate spoons,2017-05-04 14:15:03,Afternoon,Weekday,Maria,4,,Pure Veg
 9423,Coffee,2017-05-04 14:20:24,Afternoon,Weekday,Nick,0,"Cakes infused with the rich flavor of coffee, providing a delightful combination of sweetness and caffeine.",Beverages
 9423,Salad,2017-05-04 14:20:24,Afternoon,Weekday,Ernest,0,"Fresh and crisp salads made with a variety of greens, vegetables, fruits, and dressings, offering a light and healthy accompaniment to cakes.",Salads
 9423,Sandwich,2017-05-04 14:20:24,Afternoon,Weekday,Patsy,5,"Layers of bread filled with meats, cheeses, vegetables, and condiments, offering a portable and satisfying meal option.",Sandwiches
