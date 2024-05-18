@@ -3,11 +3,15 @@
     grid-template-columns: 0.5fr 2fr 1fr 1fr 1fr;
     align-items: start;
     gap: 30px;
-    border: 1px solid tomato;
     padding: 20px;
     margin: 30px 0px;
     font-size: 14px;
     color: #505050;
+    background-color: rgb(255, 237, 237);
+}
+
+.order h3 {
+    color: black;
 }
 
 .order-item-food, .order-item-name {
@@ -24,11 +28,15 @@
 }
 
 .order-item select {
-    background-color: #ffe8e4;
-    border: 1px solid tomato;
+    background-color: #f3afa3;
     width: max(10vw, 120px);
     padding: 10px;
     outline: none;
+    border: none;
+    border-radius: 4px;
+    background-color: rgb(122, 31, 31);
+    cursor: pointer;
+    color: #fff7f7;
 }
 
 @media (max-width: 1000px) {

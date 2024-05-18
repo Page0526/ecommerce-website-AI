@@ -4,14 +4,21 @@
     align-items: center;
     gap: 10px;
     padding: 12px 15px;
-    border: 1px solid #cacaca;
+    border: 1px solid #d7bbbb;
     font-size: 13px;
 }
 .list-table-format.title{
     background-color: #f9f9f9;
 }
 .list-table-format img{
-    width: 50px;
+    width: 40px;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+}
+.title-list {
+    color: black;
+    font-size: 20px;
+    font-weight: 600;
 }
 @media (max-width: 600px){
     .list-table-format{

@@ -1,8 +1,16 @@
 .navbar {
+    width: 100%;
+    background-color: rgb(122, 31, 31);
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 8px 4%;
+    display: flex;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
 }
 
 .navbar .logo {
