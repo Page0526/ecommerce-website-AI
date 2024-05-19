@@ -1,15 +1,15 @@
 .food {
-    margin-top: 40px;
+    margin: 50px 0;
 }
 
 .container {
     width: 100%;
     height: 700px;
+    display: grid;
 }
 
 .food-item-img {
     width: 45%;
-    margin-left: 15px;
     flex-direction: none;
     border-radius: 20px;
     aspect-ratio: 1 / 1;
@@ -64,7 +64,6 @@
 
 .half-filled {
     position: relative;
-   
     overflow: hidden;
 }
 
@@ -102,8 +101,53 @@
     width: 25px;
 }
 
+.box-rating {
+    margin-top: 20px;
+}
+
+.comment-container {
+    width: 45%;
+    max-height: 300px;
+    overflow-y: scroll;
+}
+
+.rating-item {
+    padding-left: 5px;
+    background-color: rgb(255, 237, 237);;
+    margin-top: 10px;
+}
+
+.box-rating h2 {
+    margin-bottom: 5px;
+    font-size: 30px;
+    font-weight: 500;
+}
+
+.rating-item p {
+    color: rgb(122, 31, 31);
+    font-weight: 600;
+    margin-bottom: 4px;
+}
+
+.rating-item span {
+    color: black;
+    font-weight: 400;
+}
+
+.rating-item img {
+    margin-left: 2px;
+    width: 12px;
+}
+
+.recommend-item h2{
+    margin-top: 40px;
+    font-size: 30px;
+    font-weight: 500;
+}
+
 @media (max-width: 1100px) {
-    .name,.price,.category,.description-title {
+    .name,.price,.category,.rate {
+        height: 45px;
         font-size: 18px;
     }
     .description {
@@ -122,11 +166,28 @@
     .food-item-counters {
         font-size: 18px;
     }
+
+    .comment-container {
+        max-height: 250px;
+    }
+
+    .box-rating h2 {
+        font-size: 18px;
+    }
+
+    .rating-item p {
+        font-size: 18px;
+    }
+
+    .recommend-item h2 {
+        font-size: 18px;
+    }
 }
 
 @media (max-width: 1000px) {
-    .name,.price,.category,.description-title {
+    .name,.price,.category,.rate {
         font-size: 16px;
+        height: 40px;
     }
     .description {
         font-size: 14px;
@@ -140,13 +201,28 @@
         font-size: 16px;
     }
     .food-item-counters {
-        font-size: 18px;
+        font-size: 16px;
+    }
+
+    .box-rating h2 {
+        font-size: 16px;
+    }
+    .comment-container {
+        max-height: 250px;
+    }
+    .recommend-item h2 {
+        font-size: 16px;
+    }
+
+    .rating-item p {
+        font-size: 13px;
     }
 }
 
 @media (max-width: 900px) {
-    .name,.price,.category,.description-title {
+    .name,.price,.category,.rate {
         font-size: 15px;
+        height: 35px;
     }
     .description {
         font-size: 13px;
@@ -162,6 +238,18 @@
     }
     .food-item-counters {
         font-size: 15px;
+    }
+    .comment-container {
+        max-height: 200px;
+    }
+    .box-rating h2 {
+        font-size: 15px;
+    }
+    .recommend-item h2 {
+        font-size: 15px;
+    }
+    .rating-item p {
+        font-size: 12px;
     }
 }
   

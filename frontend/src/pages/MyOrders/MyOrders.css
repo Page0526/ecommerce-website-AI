@@ -49,7 +49,22 @@
     background-color: rgb(241, 164, 164);
     cursor: pointer;
     color: #fff7f7;
+    font-weight: 500;
+    font-size: 14px;
 }
+
+.my-orders-order .complete-box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    padding: 12px 0px;
+    border-radius: 4px;
+    background-color: rgb(167, 202, 165);
+    color: #fff7f7;
+    font-weight: 500;
+    font-size: 14px;
+} 
 
 @media (max-width: 900px) {
     .my-orders-order {
@@ -58,6 +73,10 @@
         font-size: 12px;
     }
     .my-orders-order button {
+        font-size: 10px;
+    }
+
+    .my-orders-order .complete-box {
         font-size: 10px;
     }
 }

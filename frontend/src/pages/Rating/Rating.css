@@ -1,0 +1,103 @@
+.rating {
+    margin-top: 110px;
+}
+
+.rating-box {
+    margin: auto;
+    width: 70%;
+    height: 350px;
+    background-color: rgb(255, 237, 237);
+    display: flex;
+    flex-direction: column; 
+    justify-content: center;
+    align-items: center;
+    font-weight: 300;
+    border-radius: 20px;
+}
+
+.rating-title {
+    font-size: 28px;
+}
+
+.rating-box input {
+    width: 300px;
+    height: 40px;
+    border: 1px solid rgb(198, 198, 198);
+    padding: 5px;
+    border-radius: 4px;
+    margin-top: 10px;
+}
+
+.rating-group {
+    display: flex;
+    align-items: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.rating-group label {
+    width: 90px;
+    font-weight: bolder;
+    
+}
+
+.rating-box button {
+    width: 300px;
+    height: 40px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    color: white;
+    background: rgb(122, 31, 31);
+    font-size: 18px;
+    margin-top: 30px;
+}
+
+.rating-box button:hover {
+    cursor: pointer;
+}
+
+@media (max-width: 1050px) {
+    .rating-title{
+        font-size: 25px;
+    }
+
+    .rating-box button {
+        width: 250px;
+        height: 38px;
+        font-size: 15px;
+    }
+
+    .rating-box input {
+        width: 200px;
+        height: 38px;
+    }
+    .rating-box label {
+        font-size: 15px;
+    }
+}
+
+@media (max-width: 900px) {
+    .rating-title{
+        font-size: 22px;
+    }
+
+    .rating-box button {
+        width: 220px;
+        height: 35px;
+        font-size: 13px;
+    }
+
+    .rating-box input {
+        width: 180px;
+        height: 35px;
+    }
+    .rating-box label {
+        font-size: 13px;
+        width: 70px;
+    }
+}
+
+
