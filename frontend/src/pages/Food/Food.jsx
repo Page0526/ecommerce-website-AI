@@ -1,16 +1,21 @@
 import React, { useContext, useEffect, useState } from 'react';
 import './Food.css';
+import React, { useContext, useEffect, useState } from 'react';
+import './Food.css';
 import { StoreContext } from '../../context/StoreContext';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import { assets } from '../../assets/assets';
 
 // arrow function
+// arrow function
 const Food = () => {
     const { id } = useParams();
     const { cartItems, addToCart, removeFromCart, url, token } = useContext(StoreContext);
+    const { cartItems, addToCart, removeFromCart, url, token } = useContext(StoreContext);
     const [data, setData] = useState([]);
     const [averageRating, setAverageRating] = useState(0);
+    const [recommendations, setRecommendations] = useState([]);
 
     const fetchFood = async () => {
         const response = await axios.get(url + `/api/food/${id}`);
@@ -18,6 +23,7 @@ const Food = () => {
             setData(response.data.data);
             calAverageRating(response.data.data.ratings);
         } else {
+            console.log("Error");
             console.log("Error");
         }
     };
@@ -30,17 +36,22 @@ const Food = () => {
         if (ratings && ratings.length > 0) {
             const totalRating = ratings.reduce((acc, rating) => acc + parseInt(rating.rating), 0);
             const avgRating = (totalRating / ratings.length).toFixed(1);
+            const avgRating = (totalRating / ratings.length).toFixed(1);
             setAverageRating(avgRating);
         } else {
             setAverageRating(0);
         }
+    };
     };
 
     const renderStarRating = () => {
         const stars = [];
         const roundedAverage = Math.round(averageRating);
         const integerPart = Math.floor(averageRating);
+        const roundedAverage = Math.round(averageRating);
+        const integerPart = Math.floor(averageRating);
         const decimalPart = averageRating - integerPart;
+
 
         for (let i = 1; i <= integerPart; i++) {
             stars.push(<span key={i} className="star filled">&#9733;</span>);
@@ -50,11 +61,14 @@ const Food = () => {
             stars.push(<span key="half-star" className="half-filled">&#9733;</span>);
         }
 
+
         for (let i = stars.length + 1; i <= 5; i++) {
             stars.push(<span key={i} className="star">&#9733;</span>);
         }
 
+
         return stars;
+    };
     };
 
     return (
