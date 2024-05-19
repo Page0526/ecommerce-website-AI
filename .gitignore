@@ -1,3 +1,5 @@
+**./node_modules/
+node_modules/
 # Ignore the virtual environment folder in modelAI
 modelAI/venv/
 # Ignore the virtual environment folder in modelAI
