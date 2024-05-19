@@ -115,13 +115,13 @@ const Food = () => {
     <div className='food'>
         <div className="container">
             <img className="food-item-img" src={url + "/images/"+ data.image} alt="" />
-            <div class="descrip">
-                <p class="name">{data.name}</p>
-                <p class="price">{data.price}vnd</p>
+            <div className="descrip">
+                <p className="name">{data.name}</p>
+                <p className="price">{data.price}vnd</p>
                 <p className='description-title'>Description:</p>
-                <p class="description">{data.description}</p>
+                <p className="description">{data.description}</p>
                 <p className="category">Catogory: {data.category}</p>
-                <div class="rate">
+                <div className="rate">
                     <p>{averageRating}</p>
                     <div className="star">{renderStarRating()}</div>
                 </div>
