@@ -1,8 +1,5 @@
 import foodModel from "../models/foodModel.js";
 import fs from 'fs'
-// import { StoreContext } from "../../frontend/src/context/StoreContext.jsx";
-// add food item
-import fetch from "node-fetch"
 
 // function addFood take 2 paras: request, response
 const addFood = async (req, res) => {
@@ -51,7 +48,7 @@ const removeFood = async(req, res) => {
 
 const getFoodById = async (req, res) => {
     try {
-        const food = await foodModel.findById(req.params.id); // Tìm food theo id từ database
+        const food = await foodModel.findById(req.params.id); 
         res.json({success:true, data:food})
     } catch (error) {
         console.error(error);
@@ -88,25 +85,19 @@ const searchFood = async (req, res) => {
     }
 };
 
-
-const recommendFood = async (req, res) => {
-    const itemName = req.params.name; 
-    const userName = req.params.userName;
+const getFoodByName = async (req, res) => {
     try {
-        const response = await fetch(`http://localhost:4040/recommend/?item_name=${itemName}&user_name=${userName}`);
-        const responseData = await response.json();
-        console.log(response.status)
-        if (response.ok) {
-            res.json({ success: true, data: responseData, message: "Successful" });
-        } else {
-            console.log("Error fetching recommendations");
-            res.status(response.status).json({ success: false, message: "Error fetching recommendations" });
+        const food = await foodModel.findOne({name: req.query.name});
+
+        if (!food) {
+            return res.status(404).json({ success: false, message: "Food not found" });
         }
+
+        res.json({ success: true, message: "Get food by name successful.", data: food });
     } catch (error) {
-        console.log("Error:", error);
-        res.status(500).json({ success: false, message: "Internal Server Error" });
+        console.error("Error fetching food by name:", error);
+        res.status(500).json({ success: false, message: "Internal server error" });
     }
 };
 
-
-export {addFood, listFood, removeFood, getFoodById, addComment, searchFood, recommendFood} 
+export {addFood, listFood, removeFood, getFoodById, addComment, searchFood, getFoodByName} 

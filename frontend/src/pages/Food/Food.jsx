@@ -4,21 +4,22 @@ import { StoreContext } from '../../context/StoreContext';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import { assets } from '../../assets/assets';
-
+import FoodItem from '../../components/FoodItem/FoodItem';
 // arrow function
 const Food = () => {
     const { id } = useParams();
-    const { cartItems, addToCart, removeFromCart, url, token } = useContext(StoreContext);
+    const { cartItems, addToCart, removeFromCart, url, name } = useContext(StoreContext);
     const [data, setData] = useState([]);
     const [averageRating, setAverageRating] = useState(0);
     const [recommendations, setRecommendations] = useState([]);
-    const userName = localStorage.getItem("name")
+    const [fullItem, setFullItem] = useState([]);
+
     const fetchFood = async () => {
         const response = await axios.get(url + `/api/food/${id}`);
         if (response.data.success) {
             setData(response.data.data);
             calAverageRating(response.data.data.ratings);
-            fetchRecommendations(response.data.data.name);
+            fetchRecommendations(response.data.data.name, name);
         } else {
             console.log("Error");
         }
@@ -26,18 +27,36 @@ const Food = () => {
 
     const fetchRecommendations = async (itemName, userName) => {
         try {
-            const response = await axios.get(`${url}/api/food/recommend/${itemName}/${userName}`);
-            // const response = await axios.get(`http://localhost:4000/api/food/recommend/Toast/trang`);
+            const response = await axios.get('http://localhost:4040/recommend/', {
+                params: {
+                    item_name: itemName,
+                    user_name: userName
+                }
+            });
+
             if (response.status === 200) {
-            
-                setRecommendations(response.data.data.recommendations);
+                setRecommendations(response.data.recommendations);
+                fetchItem(response.data.recommendations)
             } else {
                 console.log("Error fetching recommendations");
             }
         } catch (error) {
             console.log("Error:", error);
         }
-    };    
+    };
+    
+    const fetchItem = async (list) => {
+        const item = []
+        for (let i = 0; i < list.length; i++) {
+            const response = await axios.get(url + `/api/food/get?name=${list[i]}`)
+            if (response.status === 200) {
+                item.push(response.data.data)
+            } else {
+                console.log("Can not find item")
+            }
+        }
+        setFullItem(item)
+    }
 
     useEffect(() => {
         fetchFood();
@@ -45,6 +64,10 @@ const Food = () => {
 
     useEffect(() => {
         fetchRecommendations();
+    }, [])
+
+    useEffect(() => {
+        fetchItem();
     }, [])
 
     const calAverageRating = (ratings) => {
@@ -123,14 +146,17 @@ const Food = () => {
                     <h2>Recommend food for you</h2>
                     <hr />
                     <div className="recommend-list">
-                    {recommendations.length > 0 ? (
-                            <ul>
-                                {recommendations.map((item, index) => (
-                                    <li key={index} className='recommendation-item'>
-                                        {item}
-                                    </li>
-                                ))}
-                            </ul>
+                        {fullItem.length > 0 ? (
+                            fullItem.map((food) => (
+                                <FoodItem
+                                    key={food._id}
+                                    id={food._id}
+                                    name={food.name}
+                                    price={food.price}
+                                    description={food.description}
+                                    image={food.image}
+                                />
+                            ))
                         ) : (
                             <p>No recommendations available</p>
                         )}
