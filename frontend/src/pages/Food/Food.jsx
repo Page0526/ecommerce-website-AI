@@ -6,27 +6,46 @@ import axios from 'axios';
 import { assets } from '../../assets/assets';
 
 // arrow function
-// arrow function
 const Food = () => {
     const { id } = useParams();
     const { cartItems, addToCart, removeFromCart, url, token } = useContext(StoreContext);
     const [data, setData] = useState([]);
     const [averageRating, setAverageRating] = useState(0);
     const [recommendations, setRecommendations] = useState([]);
-
+    const userName = localStorage.getItem("name")
     const fetchFood = async () => {
         const response = await axios.get(url + `/api/food/${id}`);
         if (response.data.success) {
             setData(response.data.data);
             calAverageRating(response.data.data.ratings);
+            fetchRecommendations(response.data.data.name);
         } else {
             console.log("Error");
         }
     };
 
+    const fetchRecommendations = async (itemName, userName) => {
+        try {
+            const response = await axios.get(`${url}/api/food/recommend/${itemName}/${userName}`);
+            // const response = await axios.get(`http://localhost:4000/api/food/recommend/Toast/trang`);
+            if (response.status === 200) {
+            
+                setRecommendations(response.data.data.recommendations);
+            } else {
+                console.log("Error fetching recommendations");
+            }
+        } catch (error) {
+            console.log("Error:", error);
+        }
+    };    
+
     useEffect(() => {
         fetchFood();
     }, []);
+
+    useEffect(() => {
+        fetchRecommendations();
+    }, [])
 
     const calAverageRating = (ratings) => {
         if (ratings && ratings.length > 0) {
@@ -47,14 +66,17 @@ const Food = () => {
         for (let i = 1; i <= integerPart; i++) {
             stars.push(<span key={i} className="star filled">&#9733;</span>);
         }
+
         if (decimalPart > 0 && decimalPart < 1) {
             stars.push(<span key="half-star" className="half-filled">&#9733;</span>);
         }
+
         for (let i = stars.length + 1; i <= 5; i++) {
             stars.push(<span key={i} className="star">&#9733;</span>);
         }
+
         return stars;
-    }
+    };
 
     return (
         <div className='food'>
@@ -100,6 +122,19 @@ const Food = () => {
                 <div className="recommend-item">
                     <h2>Recommend food for you</h2>
                     <hr />
+                    <div className="recommend-list">
+                    {recommendations.length > 0 ? (
+                            <ul>
+                                {recommendations.map((item, index) => (
+                                    <li key={index} className='recommendation-item'>
+                                        {item}
+                                    </li>
+                                ))}
+                            </ul>
+                        ) : (
+                            <p>No recommendations available</p>
+                        )}
+                    </div>
                 </div>
             </div>
         </div>

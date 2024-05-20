@@ -1,7 +1,8 @@
 import foodModel from "../models/foodModel.js";
 import fs from 'fs'
-
+// import { StoreContext } from "../../frontend/src/context/StoreContext.jsx";
 // add food item
+import fetch from "node-fetch"
 
 // function addFood take 2 paras: request, response
 const addFood = async (req, res) => {
@@ -87,4 +88,25 @@ const searchFood = async (req, res) => {
     }
 };
 
-export {addFood, listFood, removeFood, getFoodById, addComment, searchFood} 
+
+const recommendFood = async (req, res) => {
+    const itemName = req.params.name; 
+    const userName = req.params.userName;
+    try {
+        const response = await fetch(`http://localhost:4040/recommend/?item_name=${itemName}&user_name=${userName}`);
+        const responseData = await response.json();
+        console.log(response.status)
+        if (response.ok) {
+            res.json({ success: true, data: responseData, message: "Successful" });
+        } else {
+            console.log("Error fetching recommendations");
+            res.status(response.status).json({ success: false, message: "Error fetching recommendations" });
+        }
+    } catch (error) {
+        console.log("Error:", error);
+        res.status(500).json({ success: false, message: "Internal Server Error" });
+    }
+};
+
+
+export {addFood, listFood, removeFood, getFoodById, addComment, searchFood, recommendFood} 

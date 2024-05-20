@@ -18,11 +18,3 @@ def fetch_data_from_api(url):
         print(f"Error: {e}")
         return None
 
-def main():
-    data = fetch_data_from_api(url)
-    if data is not None:
-        print(data.head())
-        print(data.shape)
-
-if __name__ == "__main__":
-    main()
