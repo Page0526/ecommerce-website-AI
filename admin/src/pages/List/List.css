@@ -1,3 +1,5 @@
+/* Phương Trang */
+/* CSS of List.jsx */
 .list-table-format{
     display: flex;
     grid-template-columns: 0.5fr 2fr 1fr 1fr 0.5fr;

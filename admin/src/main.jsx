@@ -4,6 +4,8 @@ import App from './App.jsx'
 import './index.css'
 import {BrowserRouter} from "react-router-dom"
 
+// Phương Trang
+// Render ra website
 ReactDOM.createRoot(document.getElementById('root')).render(
   <BrowserRouter>
     <App />

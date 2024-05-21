@@ -1,5 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap');
 
+/* Phương Trang */
+
+/* CSS chung cho tất cả element trong file index.html */
 *{
   padding: 0;
   margin: 0;
@@ -7,22 +10,26 @@
   font-family: Outfit;
 }
 
+/* CSS cho body element */
 body{
   min-height: 100vh;
   background-color: #fcfcfc;
 }
 
+/* CSS cho tag element */
 a{
   text-decoration: none;
   color: inherit;
 }
 
+/* CSS cho hr element */
 hr{
   border: none;
   height: 1px;
   background-color: #a9a9a9;
 }
 
+/* CSS cho element which has class app-content */
 .app-content{
   display: flex;
   margin-top: 50px;
