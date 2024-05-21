@@ -3,10 +3,14 @@ import './Cart.css'
 import { StoreContext } from '../../context/StoreContext'
 import { useNavigate } from 'react-router-dom'
 
+// Đỗ Trang
+// Page cart để hiện thị danh sách các món ăn trong giỏ hàng
 const Cart = () => {
 
+  // Sử dụng context để lấy các thông tin và hàm cần thiết
   const { cartItems, food_list, removeFromCart, getTotalCartAmount, url } = useContext(StoreContext)
 
+  // Sử dụng useNavigate để điều hướng
   const navigate = useNavigate();
 
   return (

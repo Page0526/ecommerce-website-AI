@@ -5,15 +5,28 @@ import { StoreContext } from '../../context/StoreContext.jsx';
 import axios from 'axios'; // Import axios
 import { assets } from '../../assets/assets.js';
 
+
+// Đỗ Trang, Thu Thảo
+// Component Navbar để hiển thị thanh tùy chọn 
 const Navbar = ({ setShowLogin }) => {
+
+    // State để lưu trạng thái của menu
     const [menu, setMenu] = useState("menu");
+    // State để lưu giá trị của ô tìm kiếm
     const [searchTerm, setSearchTerm] = useState('');
+    // State để lưu danh sách gợi ý tìm kiếm
     const [suggestions, setSuggestions] = useState([]);
+    // State để xác định hiển thị dropdown gợi ý tìm kiếm
     const [showDropdown, setShowDropdown] = useState(false); 
+    // Context để lấy thông tin từ StoreContext
     const { url, getTotalCartAmount, token, setToken } = useContext(StoreContext);
+    
+    // Hook để điều hướng đến các trang
     const navigate = useNavigate();
+    // Ref cho dropdown
     const dropdownRef = useRef(null); 
 
+     // useEffect để tìm kiếm gợi ý khi ô tìm kiếm thay đổi
     useEffect(() => {
         const fetchData = async () => {
             try {
@@ -34,10 +47,11 @@ const Navbar = ({ setShowLogin }) => {
         fetchData();
     }, [searchTerm]);
 
+    // Hook useEffect để ẩn dropdown khi click bên ngoài
     useEffect(() => {
         function handleClickOutside(event) {
             if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
-                setShowDropdown(false); // Hide dropdown when clicking outside the dropdown
+                setShowDropdown(false); // Ẩn danh sách thả xuống khi nhấp vào bên ngoài danh sách thả xuống
             }
         }
         document.addEventListener("mousedown", handleClickOutside);
@@ -46,30 +60,31 @@ const Navbar = ({ setShowLogin }) => {
         };
     }, [dropdownRef]);
 
-    
+    // useEffect để ẩn dropdown khi điều hướng
     useEffect(() => {
         setShowDropdown(false); 
     }, [navigate]);
 
+    // Hàm đăng xuất
     const logout = () => {
         localStorage.removeItem("token");
         setToken("");
         navigate("/");
     };
 
-    // Redirecting to search page
+    // Hàm xử lý khi nhấn nút tìm kiếm
     const handleSearch = () => {
         if (searchTerm.trim() !== '') {
             navigate(`/search?search=${searchTerm}`);
         }
     };
 
-    // Clicking on the item will redirect to the product detail page
+    // Hàm xử lý khi nhấn vào gợi ý tìm kiếm
     const handleSuggestionClick = (id) => {
         navigate(`/food/${id}`); 
     };    
 
-    // Enter to search
+    // Hàm xử lý khi nhấn phím Enter trong ô tìm kiếm
     const handleKeyPress = (e) => {
         if (e.key === 'Enter') {
             handleSearch();

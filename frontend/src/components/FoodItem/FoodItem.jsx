@@ -4,9 +4,14 @@ import { assets } from '../../assets/assets';
 import { StoreContext } from '../../context/StoreContext.jsx';
 import { Link } from 'react-router-dom';
 
+// Đỗ Trang, Thu Thảo
+// Component FoodItem để hiển thị thông tin của một món ăn
 const FoodItem = ({ id, name, price, description, image, ratings }) => {
+
+    // Sử dụng useContext để lấy các phương thức và trạng thái từ context
     const { cartItems, addToCart, removeFromCart, url } = useContext(StoreContext);
 
+    // Hàm tính điểm trung bình đánh giá của món ăn
     const calculateAverageRating = (ratings) => {
         if (ratings && ratings.length > 0) {
             const totalRating = ratings.reduce((acc, rating) => acc + rating.rating, 0);
@@ -17,12 +22,16 @@ const FoodItem = ({ id, name, price, description, image, ratings }) => {
         }
     };
 
+    // Gọi hàm để tính điểm trung bình đánh giá
     const averageRating = calculateAverageRating(ratings);
 
     return (
         <div className='food-item'>
             <div className="food-item-img-container">
-                <Link to={`/food/${id}`}><img className="food-item-image" src={url + "/images/" + image} alt="" /></Link>
+                {/* Link đến trang chi tiết món ăn */}
+                <Link to={`/food/${id}`}>
+                    <img className="food-item-image" src={url + "/images/" + image} alt="" />
+                </Link>
                 {!cartItems[id]
                     ? <img className='add' onClick={() => addToCart(id)} src={assets.add_icon_white} alt="" />
                     : <div className='food-item-counter'>

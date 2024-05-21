@@ -1,14 +1,19 @@
 import { createContext, useEffect, useState } from "react";
 import axios from 'axios';
 export const StoreContext = createContext(null);
+
+// Thu Thảo
+// Tạo context để chia sẻ trạng thái giữa các component
 const StoreContextProvider = (props) => {
 
+    // Khởi tạo state để lưu trữ thông tin giỏ hàng, URL API, token, danh sách món ăn, và tên người dùng
     const [cartItems, setCartItems] = useState({});
     const url = "http://localhost:4000";
     const [token, setToken] = useState("");
     const [food_list, setFoodList] = useState([])
     const [name, setName] = useState("");
 
+    // Hàm thêm món vào giỏ hàng
     const addToCart = async (itemId) => {
         if (!cartItems[itemId]) {
             setCartItems((prev) => ({ ...prev, [itemId]: 1 }))
@@ -21,6 +26,7 @@ const StoreContextProvider = (props) => {
         }
     }
 
+    // Hàm xóa món khỏi giỏ hàng
     const removeFromCart = async (itemId) => {
         setCartItems((prev) => ({ ...prev, [itemId]: prev[itemId] - 1 }))
         if (token) {
@@ -28,6 +34,7 @@ const StoreContextProvider = (props) => {
         }
     }
 
+    // Hàm tính tổng số tiền trong giỏ hàng
     const getTotalCartAmount = () => {
         let totalAmount = 0;
         for (const item in cartItems) {
@@ -41,17 +48,19 @@ const StoreContextProvider = (props) => {
         return totalAmount;
     }
     
-
+    // Hàm lấy danh sách món ăn từ API
     const fetchFoodList = async () => {
         const response = await axios.get(url+"/api/food/list");
         setFoodList(response.data.data)
     }
 
+    // Hàm tải dữ liệu giỏ hàng từ API khi có token
     const loadCartData = async (token) => {
         const response = await axios.post(url + "/api/cart/get", {}, {headers: {token}});
         setCartItems(response.data.cartData);
     }
 
+    // useEffect để tải dữ liệu
     useEffect(()=> {
         async function loadData() {
             await fetchFoodList();
@@ -65,6 +74,7 @@ const StoreContextProvider = (props) => {
         loadData();
     },[])
 
+    // Giá trị của context để truyền xuống các component con
     const contextValue = {
         food_list,
         cartItems,

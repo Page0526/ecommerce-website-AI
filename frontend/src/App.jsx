@@ -14,12 +14,14 @@ import Search from './pages/Search/Search';
 import Rating from './pages/Rating/Rating';
 
 const App = () => {
+
+  // ShowLogin để Hiển thị popup đăng nhập
   const [showLogin, setShowLogin] = useState(false);
 
   useEffect(() => {
-    const token = localStorage.getItem('token');
+    const token = localStorage.getItem('token'); // Kiểm tra xem có token trong localStorage không
     if (!token) {
-      setShowLogin(true);
+      setShowLogin(true); 
     }
   }, []);
 
