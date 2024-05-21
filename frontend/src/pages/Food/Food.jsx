@@ -60,11 +60,12 @@ const Food = () => {
 
     useEffect(() => {
         fetchFood();
-    }, []);
+        window.scrollTo(0, 0);
+    }, [id]);
 
     useEffect(() => {
         fetchRecommendations();
-    }, [])
+    }, [id])
 
     useEffect(() => {
         fetchItem();
