@@ -1,3 +1,5 @@
+// Thu Thảo
+// Định nghĩa cấu trúc bảng user trong cơ sở dữ liệu
 import mongoose from "mongoose"
 
 const userSChema = new mongoose.Schema({

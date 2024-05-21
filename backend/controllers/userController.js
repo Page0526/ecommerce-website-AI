@@ -1,9 +1,11 @@
+// Thu Thảo
+// Controllers user nhận các yêu cầu HTTP từ routes và tương tác với model user để xử lý đăng nhập, đăng kí, lấy thông tin và cập nhật thông tin người dùng
 import userModel from "../models/userModel.js";
 import jwt from "jsonwebtoken"
 import bcrypt from "bcrypt"
 import validator from "validator"
 
-// login user
+// Đăng nhập người dùng
 const loginUser = async (req, res) => {
     const {email,password} = req.body;
     try {
@@ -27,21 +29,20 @@ const loginUser = async (req, res) => {
     }
 }
 
+// Tạo token
 const createToken = (id) => {
     return jwt.sign({id},process.env.JWT_SECRET)
 }
 
-// register user
+// Đăng kí người dùng
 const registerUser = async (req, res) => {
     const {name, password, email} = req.body;
     try {
-        // checking is user already exists
         const exists = await userModel.findOne({email});
         if (exists) {
             return res.json({success:false,message:"User already exists"})
         }
 
-        // validating email format $ strong password
         if (!validator.isEmail(email)) {
             return res.json({success:false,message:"Please enter a valid email"})
         }
@@ -50,7 +51,6 @@ const registerUser = async (req, res) => {
             return res.json({success:false,message:"Please enter a strong password"})
         }
 
-        // hashing user password
         const salt = await bcrypt.genSalt(10)
         const hashedPassword = await bcrypt.hash(password,salt);
 
@@ -70,6 +70,7 @@ const registerUser = async (req, res) => {
     }
 }
 
+// Lấy thông tin người dùng
 const getUser = async (req, res) => {
     try {
         let userData = await userModel.findById(req.body.userId);
@@ -80,6 +81,7 @@ const getUser = async (req, res) => {
     }
 }
 
+// Thay đổi thông tin người dùng
 const changeUser = async (req, res) => {
     const { email, name, sex, birthday, phone, address } = req.body;
 

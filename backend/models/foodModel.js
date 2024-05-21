@@ -1,6 +1,7 @@
+// Phương Trang
+// Định nghĩa cấu trúc bảng food trong cơ sở dữ liệu
 import mongoose from "mongoose";
 
-// where to define your model
 const foodSchema = new mongoose.Schema({
     name: {type:String, required:true},
     description: {type:String, required:true},
@@ -14,7 +15,6 @@ const foodSchema = new mongoose.Schema({
     }]
 })
 
-// create model/ use exist model
 const foodModel = mongoose.models.food || mongoose.model("food", foodSchema)
 
 export default foodModel;

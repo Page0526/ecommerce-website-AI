@@ -1,3 +1,5 @@
+// Phương Trang
+// Tạo server, gọi hàm kết nối đến cơ sở dữ liệu và định nghĩa các endpoint API
 import express from 'express'
 import cors from 'cors'
 import { connectDB } from './config/db.js'
@@ -7,18 +9,14 @@ import 'dotenv/config'
 import cartRouter from './routes/cartRoute.js'
 import orderRouter from './routes/orderRoute.js'
 
-// app config
 const app = express()
 const port = 4000
 
-// middleware
 app.use(express.json())
 app.use(cors())
 
-// db connection
+// kết nối đến database
 connectDB();
-
-// app.use('/images', express.static(path.join(__dirname, 'images')));
 
 // api endpoints
 app.use("/api/food", foodRouter)

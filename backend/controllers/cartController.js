@@ -1,6 +1,8 @@
+// Thu Thảo
+// Controllers cart nhận các yêu cầu HTTP từ routes cart để xử lý các logic liên quan đến giỏ hàng
 import userModel from "../models/userModel.js"
 
-// add items to user cart
+// Thêm sản phẩm vào giỏ hàng
 const addToCart = async (req, res) => {
     try {
         let userData = await userModel.findById(req.body.userId);
@@ -18,7 +20,7 @@ const addToCart = async (req, res) => {
     }
 }
 
-// remove items from user cart
+// Xóa sản phẩm khỏi giỏ hàng
 const removeFromCart = async (req, res) => {
     try {
         let userData = await userModel.findById(req.body.userId);
@@ -34,7 +36,7 @@ const removeFromCart = async (req, res) => {
     }
 }
 
-// fetch user cart data
+// lấy dữ liệu giỏ hàng của người dùng
 const getCart = async (req, res) => {
     try {
         let userData = await userModel.findById(req.body.userId);
