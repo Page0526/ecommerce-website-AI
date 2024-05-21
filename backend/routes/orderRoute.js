@@ -1,3 +1,5 @@
+// Phạm Chiến
+// Định nghĩa các routes cho order
 import express from "express"
 import authMiddleware from "../middleware/auth.js"
 import { placeOrder, verifyOrder, userOrders, listOrders, updateStatus, updateRated } from "../controllers/orderController.js"

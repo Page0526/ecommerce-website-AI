@@ -1,7 +1,9 @@
+// Phương Trang, Thu Thảo, Phạm Chiến
+// Controllers food nhận yêu cầu HTTP từ routes food để xử lý các logic liên quan đến food
 import foodModel from "../models/foodModel.js";
 import fs from 'fs'
 
-// function addFood take 2 paras: request, response
+// Thêm food
 const addFood = async (req, res) => {
     let image_filename = `${req.file.filename}`;
 
@@ -21,7 +23,7 @@ const addFood = async (req, res) => {
     }
 }
 
-// all food list
+// danh sách tất cả food
 const listFood = async (req, res) => {
     try {
         const foods = await foodModel.find({});
@@ -32,7 +34,7 @@ const listFood = async (req, res) => {
     } 
 }
 
-//remove food item
+// xóa food
 const removeFood = async(req, res) => {
     try {
         const food = await foodModel.findById(req.body.id);
@@ -46,6 +48,7 @@ const removeFood = async(req, res) => {
     }
 }
 
+// lấy ra sản phẩm bằng id
 const getFoodById = async (req, res) => {
     try {
         const food = await foodModel.findById(req.params.id); 
@@ -56,6 +59,7 @@ const getFoodById = async (req, res) => {
     }
 };
 
+// thêm đánh giá
 const addComment = async (req, res) => {
     try {
         const food = await foodModel.findById(req.params.id);
@@ -74,6 +78,7 @@ const addComment = async (req, res) => {
     }  
 }
 
+// Tìm kiếm sản phẩm
 const searchFood = async (req, res) => {
     try {
         const search = req.query.search || "";
@@ -85,6 +90,7 @@ const searchFood = async (req, res) => {
     }
 };
 
+// Lấy ra sản phẩm bằng tên
 const getFoodByName = async (req, res) => {
     try {
         const food = await foodModel.findOne({name: req.query.name});

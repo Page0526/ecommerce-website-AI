@@ -1,3 +1,5 @@
+// Phạm Chiến
+// Định nghĩa cấu trúc bảng order trong cơ sở dữ liệu
 import mongoose from "mongoose"
 
 const orderSchema = new mongoose.Schema({
