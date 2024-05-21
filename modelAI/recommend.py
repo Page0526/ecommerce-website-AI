@@ -1,6 +1,6 @@
-# from pymongo import MongoClient
-import numpy as np # linear algebra
-import pandas as pd # data processing, CSV file I/O (e.g. pd.read_csv)
+# Phương Trang, Đỗ Trang
+import numpy as np 
+import pandas as pd 
 import sklearn
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import linear_kernel 
@@ -11,41 +11,46 @@ import os
 Tạo gợi ý dựa trên hành vi Người dùng:** Sử dụng dữ liệu về hành vi duyệt web và mua hàng của người dùng để gợi ý sản phẩm phù hợp.
 Cập nhật mô hình gợi ý:** Mô hình gợi ý cần được cập nhật định kỳ dựa trên dữ liệu mới nhất.
 '''
+
+# Hàm tính toán gợi ý dựa trên nội dung sản phẩm
 def content_based(item, df):
+    # Xóa các bản ghi trùng lặp về mặt hàng
     new_data = df.drop_duplicates(subset = ['Items']).reset_index(drop=True)
 
-    #Define a TF-IDF Vectorizer Object. Remove all english stop words such as 'the', 'a'
+    # Định nghĩa một đối tượng TfidfVectorizer để tạo ma trận TF-IDF
     tfidf = TfidfVectorizer(stop_words='english')
 
-    #Replace NaN with an empty string
+    # Thay thế các giá trị NaN bằng một chuỗi trống
     new_data['Description'] = new_data['Description'].fillna('')
 
-    #Construct the required TF-IDF matrix by fitting and transforming the data
+    # Tạo ma trận TF-IDF cần thiết bằng cách fit và transform dữ liệu
     tfidf_matrix = tfidf.fit_transform(new_data['Description'])
 
-    # Compute the cosine similarity matrix
+    # Tính ma trận độ tương đồng cosine
     cosine_sim = linear_kernel(tfidf_matrix, tfidf_matrix)
 
-    #Construct a reverse map of indices and movie titles
+    # Xây dựng bản đồ nghịch đảo của chỉ số và tiêu đề sản phẩm
     indices = pd.Series(new_data.index, index=new_data['Items']).drop_duplicates()
 
-    # Get the index of the movie that matches the title
+    # Lấy chỉ số của sản phẩm phù hợp với tiêu đề
     idx = indices[item]
 
-    # Get the pairwsie similarity scores of all movies with that movie
+    # Lấy điểm tương đồng của tất cả các sản phẩm với sản phẩm đó
     sim_scores = cosine_sim[idx] 
 
-    # Sort the movies based on the similarity scores
+    # Sắp xếp các sản phẩm dựa trên điểm tương đồng
     sim_scores = sorted(range(len(sim_scores)), key=lambda i: sim_scores[i], reverse=True)
 
-    # Get the scores of the 10 most similar movies
+    # Lấy điểm tương đồng của 10 sản phẩm tương tự nhất
     sim_scores = sim_scores[1:11]
 
+    # Lấy chỉ số của 10 sản phẩm tương tự nhất
     items_indices = sim_scores[1:11]
     
-    # Return the top 10 most similar movies
+    # Trả về 10 sản phẩm tương tự nhất
     return list(set(new_data['Items'].iloc[items_indices]))
 
+# Hàm gợi ý dựa trên sản phẩm
 def item_based(item_name, df):
     user_item_df = df.pivot_table(index=["User"], columns=["Items"], values="Rating")
     item_name_col = user_item_df[item_name]
@@ -54,6 +59,7 @@ def item_based(item_name, df):
     moveis_from_item_based = moveis_from_item_based[mask]
     return moveis_from_item_based[0:10].index.to_list()
 
+# Hàm dự đoán xếp hạng
 def predict_rating(random_user, df):
     # df = fetch_data_from_api(url)
     user_item_df = df.pivot_table(index=["User"], columns=["Items"], values="Rating")
@@ -100,19 +106,20 @@ def predict_rating(random_user, df):
     # create a dataframe that insert Items, Rating into top_users
     top_users_ratings = top_users_ratings[top_users_ratings["User"] != random_user]
 
-    top_users_ratings['weighted_rating'] = top_users_ratings['corr'] * top_users_ratings['Rating'] # a new column weighted_rating = corr * ratings
-    top_users_ratings.groupby('Items').agg({"weighted_rating": "mean"}) # caculate weighted ratings which random user can rate for items
+    top_users_ratings['weighted_rating'] = top_users_ratings['corr'] * top_users_ratings['Rating'] # một cột mới có trọng số_đánh giá = sửa * xếp hạng
+    top_users_ratings.groupby('Items').agg({"weighted_rating": "mean"}) # tính toán xếp hạng có trọng số mà người dùng ngẫu nhiên có thể xếp hạng cho các mục
 
     predict1 = pd.DataFrame(columns=['Items', 'Rating'])
     predict1['Items'] = top_users_ratings['Items']
     predict1['Rating'] = top_users_ratings['weighted_rating'] 
     return predict1
     
+# Hàm lọc cộng tác
 def CollaborativeFiltering(item, user, df):
   recommendation_df = predict_rating(user, df)
   recommendation_df = recommendation_df.reset_index()
 
-  # items which random user will like:
+  # các mục mà người dùng ngẫu nhiên sẽ thích
   items_to_be_recommend = recommendation_df[recommendation_df["Rating"] > 1].sort_values("Rating", ascending=False)
  
   moveis_from_item_based = item_based(item, df)
@@ -122,6 +129,7 @@ def CollaborativeFiltering(item, user, df):
   recommend_list = sorted(recommend_list, key=lambda x: random.random())
   return recommend_list
 
+# Hàm gợi ý chính
 def recommend(item, user, df, isLogin = False):
     counts = df['User'].value_counts()
     if (not isLogin or counts[user] < 10):
@@ -134,7 +142,7 @@ def recommend(item, user, df, isLogin = False):
         print("Collaborative Filtering")
         return CollaborativeFiltering(item, user, df)
 
-# test
+# Kiểm tra
 cd = os.getcwd()
 print(os.path.dirname(cd))
 data_path = os.path.join(os.path.dirname(cd), 'modelAI\\data')
