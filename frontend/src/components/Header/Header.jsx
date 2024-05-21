@@ -1,6 +1,8 @@
 import React from 'react'
 import './Header.css'
 
+// Trang Đỗ
+// Component Header để hiển thị phần tiêu đề của trang web
 const Header = () => {
   return (
     <div className='header'>

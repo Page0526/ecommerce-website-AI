@@ -7,18 +7,26 @@ import { useLocation } from 'react-router-dom'; // Import useLocation
 
 const Search = () => {
     const { url } = useContext(StoreContext);
+    // State lưu trữ từ khóa tìm kiếm
     const [searchTerm, setSearchTerm] = useState('');
+    // State lưu trữ kết quả tìm kiếm
     const [searchResult, setSearchResult] = useState([]);
+    // State để kiểm tra xem có món ăn nào không
     const [noFoodFound, setNoFoodFound] = useState(false);
     const location = useLocation(); // Lấy location
 
     useEffect(() => {
+        // Lấy tham số tìm kiếm từ query string
         const searchParams = new URLSearchParams(location.search);
+        // Lấy giá trị của tham số 'search'
         const term = searchParams.get('search');
+        // Cập nhật state searchTerm
         setSearchTerm(term);
+        // Gọi hàm handleSearch khi searchTerm thay đổi
         handleSearch(term);
     }, [location.search]);
 
+    // Hàm xử lý tìm kiếm món ăn dựa trên từ khóa
     const handleSearch = async (term) => { // Thêm tham số term vào hàm handleSearch
         try {
             const response = await axios.get(`${url}/api/food/search?search=${term}`);

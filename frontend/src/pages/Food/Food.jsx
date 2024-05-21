@@ -5,15 +5,21 @@ import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import { assets } from '../../assets/assets';
 import FoodItem from '../../components/FoodItem/FoodItem';
-// arrow function
+
+// Phạm Chiến, Thu Thảo
+// Trang Food để hiện thị thông tin chi tiết của món ăn
 const Food = () => {
+
+    // Lấy ID từ URL params
     const { id } = useParams();
+    // Lấy các giá trị và hàm từ StoreContext
     const { cartItems, addToCart, removeFromCart, url, name } = useContext(StoreContext);
     const [data, setData] = useState([]);
     const [averageRating, setAverageRating] = useState(0);
     const [recommendations, setRecommendations] = useState([]);
     const [fullItem, setFullItem] = useState([]);
 
+    // Fetch thông tin món ăn từ API
     const fetchFood = async () => {
         const response = await axios.get(url + `/api/food/${id}`);
         if (response.data.success) {
@@ -25,6 +31,7 @@ const Food = () => {
         }
     };
 
+    // Fetch đề xuất món ăn từ API
     const fetchRecommendations = async (itemName, userName) => {
         try {
             const response = await axios.get('http://localhost:4040/recommend/', {
@@ -45,6 +52,7 @@ const Food = () => {
         }
     };
     
+    // Fetch thông tin các món ăn đề xuất từ API
     const fetchItem = async (list) => {
         const item = []
         for (let i = 0; i < list.length; i++) {
@@ -58,19 +66,23 @@ const Food = () => {
         setFullItem(item)
     }
 
+    // Gọi hàm fetchFood khi id thay đổi
     useEffect(() => {
         fetchFood();
         window.scrollTo(0, 0);
     }, [id]);
 
+    // Gọi hàm fetchRecommendations khi id thay đổi
     useEffect(() => {
         fetchRecommendations();
     }, [id])
 
+    // Gọi hàm fetchItem khi component mount
     useEffect(() => {
         fetchItem();
     }, [])
 
+    // Tính điểm đánh giá trung bình
     const calAverageRating = (ratings) => {
         if (ratings && ratings.length > 0) {
             const totalRating = ratings.reduce((acc, rating) => acc + parseInt(rating.rating), 0);
@@ -81,6 +93,7 @@ const Food = () => {
         }
     };
 
+    // Hiển thị đánh giá bằng sao
     const renderStarRating = () => {
         const stars = [];
         const roundedAverage = Math.round(averageRating);

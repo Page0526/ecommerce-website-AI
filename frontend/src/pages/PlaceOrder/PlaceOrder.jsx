@@ -4,10 +4,13 @@ import { StoreContext } from '../../context/StoreContext'
 import { useNavigate } from 'react-router-dom'
 import axios from 'axios';
 
+// Phạm Chiến
+// Trang PlaceOrder sử dụng để người dùng điền thông tin giao hàng của đơn hàng
 const PlaceOrder = () => {
 
+  // Lấy thông tin cần thiết từ Context
   const { getTotalCartAmount, token, food_list, cartItems, url } = useContext(StoreContext)
-
+  // Khởi tạo state để lưu trữ thông tin đơn hàng
   const [data,setData] = useState({
     firstName: "",
     lastName: "",
@@ -20,15 +23,18 @@ const PlaceOrder = () => {
     phone: ""
   })
 
+  // Hàm xử lý khi thay đổi giá trị của các trường nhập liệu
   const onChangeHandler = (event) => {
       const name = event.target.name;
       const value = event.target.value;
       setData (data => ({...data, [name]: value}))
   }
 
+  // Hàm xử lý khi người dùng đặt hàng
   const placeOrder = async (event) => {
-      event.preventDefault();
+      event.preventDefault(); // Ngăn chặn hành vi mặc định của form
       let orderItems = [];
+      // Lặp qua danh sách sản phẩm trong giỏ hàng để tạo đơn hàng
       food_list.map((item) => {
           if (cartItems[item._id] > 0) {
               let itemInfo = item;
@@ -39,8 +45,9 @@ const PlaceOrder = () => {
       let orderData = {
           address: data,
           items: orderItems,
-          amount: getTotalCartAmount() + 2,
+          amount: getTotalCartAmount() + 20000,
       }
+      // Gửi yêu cầu POST đến server để đặt hàng
       let response = await axios.post(url + "/api/order/place", orderData, {headers: {token}});
       if (response.data.success) {
           const {session_url} = response.data;
@@ -50,14 +57,16 @@ const PlaceOrder = () => {
       }
   }
 
+  // Sử dụng hook useNavigate để chuyển hướng
   const navigate = useNavigate();
 
+  // Kiểm tra xem người dùng đã đăng nhập và giỏ hàng có sản phẩm không
   useEffect(() => {
     if (!token) {
-      navigate('/cart')
+      navigate('/cart') // Nếu chưa đăng nhập, chuyển hướng đến trang giỏ hàng
     } 
     else if (getTotalCartAmount() === 0){
-      navigate('/cart')
+      navigate('/cart') // Nếu giỏ hàng trống, chuyển hướng đến trang giỏ hàng
     }
   }, [token])
 

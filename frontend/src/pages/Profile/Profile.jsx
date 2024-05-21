@@ -3,9 +3,14 @@ import './Profile.css';
 import { StoreContext } from '../../context/StoreContext';
 import axios from 'axios';
 
+// Thu Thảo
+// Trang Profile để hiện thị các thông tin người dùng và tính năng thay đổi thông tin người dùng
 const Profile = () => {
+
     const { url, token } = useContext(StoreContext);
+    // Khởi tạo state để lưu trữ dữ liệu người dùng
     const [data, setData] = useState({});
+    // Khởi tạo state để lưu trữ dữ liệu biểu mẫu người dùng nhập vào
     const [formData, setFormData] = useState({
         email: '',
         name: '',
@@ -14,10 +19,15 @@ const Profile = () => {
         phone: '',
         address: ''
     });
-    const [editEmail, setEditEmail] = useState(false);
-    const [editName, setEditName] = useState(false);
+
+    // State để xác định xem trường email có đang được chỉnh sửa hay không
+    const [editEmail, setEditEmail] = useState(false); 
+    // State để xác định xem trường tên có đang được chỉnh sửa hay không
+    const [editName, setEditName] = useState(false); 
+    // State để xác định xem người dùng đang xem trang cập nhật thông tin hay trang thông tin cá nhân của mình
     const [showUpdateProfile, setShowUpdateProfile] = useState(true);
 
+    // Hàm lấy thông tin người dùng từ server
     const getUserData = async (token) => {
         const response = await axios.get(url + `/api/user/get`, { headers: { token } });
         if (response.data.success) {
@@ -28,9 +38,11 @@ const Profile = () => {
         }
     };
 
+    // Gọi hàm lấy thông tin người dùng khi token thay đổi
     useEffect(() => {
         getUserData(token);
     }, [token]);
+
 
     useEffect(() => {
         setFormData(prevData => ({
@@ -40,6 +52,7 @@ const Profile = () => {
         }));
     }, [data, editEmail, editName]);
 
+    // Hàm xử lý khi có sự thay đổi trên các trường nhập liệu
     const handleChange = (e) => {
         const { name, value } = e.target;
         setFormData(prevState => ({
@@ -48,6 +61,7 @@ const Profile = () => {
         }));
     };
 
+    // Hàm xử lý khi người dùng gửi biểu mẫu cập nhật thông tin
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
@@ -61,18 +75,22 @@ const Profile = () => {
         }
     };
 
+    // Hàm chuyển đổi trạng thái chỉnh sửa trường email
     const toggleChangeEmail = () => {
         setEditEmail(prevState => !prevState);
     };
 
+    // Hàm chuyển đổi trạng thái chỉnh sửa trường tên
     const toggleChangeName = () => {
         setEditName(prevState => !prevState);
     };
 
+    // Hàm hiển thị trang cập nhật thông tin
     const handleShowUpdateProfile = () => {
         setShowUpdateProfile(true);
     };
 
+    // Hàm hiển thị trang thông tin cá nhân
     const handleShowMyProfile = () => {
         setShowUpdateProfile(false);
     };

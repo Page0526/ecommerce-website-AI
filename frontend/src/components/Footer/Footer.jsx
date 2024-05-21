@@ -2,6 +2,8 @@ import React from 'react'
 import './Footer.css'
 import { assets } from '../../assets/assets'
 
+// Đỗ Trang
+// Component Footer để hiển thị phần footer của trang web
 const Footer = () => {
   return (
     <div className='footer' id='footer'>

@@ -2,6 +2,8 @@ import React from 'react'
 import './AppDownload.css'
 import { assets } from '../../assets/assets'
 
+// Đỗ Trang
+// Component AppDownload để hiển thị thông tin tải ứng dụng
 const AppDownload = () => {
   return (
     <div className='app-download' id='app-download'>

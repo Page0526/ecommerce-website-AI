@@ -5,22 +5,30 @@ import axios from 'axios';
 import { assets } from '../../assets/assets.js';
 import { useNavigate } from 'react-router-dom';
 
+// Phạm Chiến, Thu Thảo
+// Trang MyOrders để hiện các đơn hàng mà người dùng đã mua
 const MyOrders = () => {
+    
+    // Lấy url và token từ Context
     const { url, token } = useContext(StoreContext);
+    // Khởi tạo state 'data' để lưu trữ danh sách đơn hàng
     const [data, setData] = useState([]);
     const navigate = useNavigate();
 
+    // Hàm gọi API để lấy danh sách đơn hàng từ server
     const fetchOrders = async () => {
         const response = await axios.post(url + "/api/order/userorders", {}, { headers: { token } });
         setData(response.data.data);
     }
 
+    // Gọi hàm fetchOrders khi token thay đổi
     useEffect(() => {
         if (token) {
             fetchOrders();
         }
     }, [token])
 
+    // Xử lý sự kiện khi người dùng nhấp vào nút đánh giá
     const handleRatingClick = (orderId, items) => {
         navigate(`/rating/${orderId}`, { state: { items } }); 
     }
@@ -43,7 +51,7 @@ const MyOrders = () => {
                                     return item.name + " x " + item.Quantity + ", ";
                                 }
                             })}</p>
-                            <p>${order.amount}.00</p>
+                            <p>VND {order.amount}</p>
                             <p>Items: {order.items.length}</p>
                             <p><span>&#x25cf;</span><b>{order.status}</b></p>
                             {order.status === 'Delivered' && (
