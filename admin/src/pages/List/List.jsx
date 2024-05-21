@@ -3,9 +3,13 @@ import './List.css'
 import {toast} from 'react-toastify'
 import axios from 'axios'
 
+// Phương Trang
 const List=({url}) => {
 
+    // useState đế cập nhật danh sách sản phẩm
     const [list, setList] = useState([]);
+
+    // Hàm bất đồng bộ dùng axios gọi GET request đến api để hiển thị danh sách sản phẩm
     const fetchList = async () => {
         const response = await axios.get(`${url}/api/food/list`);
         if (response.data.success) {
@@ -16,6 +20,7 @@ const List=({url}) => {
         }
     }
 
+    // Hàm bất đồng bộ nhận tham số là foodId để xóa bỏ sản phẩm khỏi database
     const removeFood = async(foodId) => {
         const response = await axios.post(`${url}/api/food/remove`,{id:foodId})
         await fetchList();
@@ -26,10 +31,12 @@ const List=({url}) => {
         }
     }
 
+    // gọi fetchList() khi component được render lần đầu tiên
     useEffect(()=>{
         fetchList();
     },[])
 
+    // Render giao diện
     return (
         <div className='list add flex-col'>
             <p className='title-list'>All Foods List</p>

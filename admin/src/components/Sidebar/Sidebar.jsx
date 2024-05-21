@@ -3,6 +3,8 @@ import './Sidebar.css'
 import { assets } from '../../assets/assets'
 import { NavLink } from 'react-router-dom'
 
+// Phương Trang
+// Thanh bên cho trang Admin
 const Sidebar = () => {
     return (
         <div className='sidebar'>

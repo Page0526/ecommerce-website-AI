@@ -6,10 +6,14 @@ import { useEffect } from 'react'
 import axios from "axios"
 import { assets } from "../../assets/assets"
 
+// Phương Trang
+// Define a component to display list of orders with one param is API backend
 const Orders = ({url}) => {
 
+    // quản lý trạng thái của các đơn hàng
     const [orders, setOrders] = useState([]);
 
+    // hàm bất đồng bộ dùng axios để gửi GET request tới endpoint và cập nhật state của orders nếu thành công, ngược lại báo lỗi
     const fetchAllOrders = async () => {
         const response = await axios.get(url + "/api/order/list");
         if (response.data.success) {
@@ -19,6 +23,7 @@ const Orders = ({url}) => {
         }
     }
 
+    // hàm bất đồng bộ để cập nhật trạng thái của đơn hàng, gửi POST request đến endpoint 
     const statusHandler = async (event, orderId) => {
         const response = await axios.post(url + "/api/order/status", {
             orderId,
@@ -29,10 +34,12 @@ const Orders = ({url}) => {
         }
     }
 
+    // gọi hàm fetchAllOrders
     useEffect(() => {
         fetchAllOrders();
     }, [])
 
+    // render giao diện
     return (
         <div className='order add'>
             <h3>Order Page</h3>

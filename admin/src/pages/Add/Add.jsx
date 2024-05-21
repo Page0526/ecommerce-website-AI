@@ -5,7 +5,11 @@ import axios from 'axios'
 import { toast} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
+// Phương Trang
+// React component để thêm sản phẩm, nhận vào 1 tham số là api backend
 const Add=({url}) => {
+
+    // setImage, setData là hàm cập nhật giá trị tương ứng, image để lưu trữ hình ảnh được chọn, data để lưu trữ thông tin sản phẩm
     const [image, setImage] = useState(false)
     const [data, setData] = useState({
         name:"",
@@ -14,12 +18,14 @@ const Add=({url}) => {
         category:"Salad"    
     })
 
+    // Xử lý sự kiện khi giá trị của các input thay đổi
     const onChangeHandler = (event) => {
         const name = event.target.name;
         const value = event.target.value;
         setData(data=>({...data,[name]:value}))
     }
 
+    // Hàm bất đồng bộ xử lý sự kiến khi form được gửi đi
     const onSubmitHandler = async (event) => {
         event.preventDefault();
         const formData = new FormData();
@@ -43,6 +49,7 @@ const Add=({url}) => {
         }
     }
 
+    // render giao diện
     return (
         <div className='add'>
             <form className='flex-col' onSubmit={onSubmitHandler}>
